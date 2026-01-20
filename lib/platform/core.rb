@@ -7,6 +7,7 @@ require_relative "../service_actor/checks/nil_check"
 require_relative "service"
 require_relative "exception_handlers/argument_error"
 require_relative "exception_handlers/failure"
+require_relative "exception_handlers/record_invalid"
 require_relative "exception_handlers/standard_error"
 
 module Platform
