@@ -6,7 +6,7 @@ module Platform
       {
         be_positive_or_nil: {
           is: ->(v) { v.nil? || v.to_i.positive? },
-          message: ->(input_key:, **) { "invalid_#{input_key}" }
+          message: ->(input_key:, **) { ErrorMessage.new("invalid_format", input_key).to_json }
         }
       }
     end
@@ -15,7 +15,7 @@ module Platform
       {
         be_present: {
           is: ->(v) { v.present? },
-          message: ->(input_key:, **) { "invalid_#{input_key}" }
+          message: ->(input_key:, **) { ErrorMessage.new("required", input_key).to_json }
         }
       }
     end
