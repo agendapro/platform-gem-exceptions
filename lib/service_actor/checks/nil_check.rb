@@ -8,7 +8,7 @@ module ServiceActor
     class NilCheck
       remove_const(:DEFAULT_MESSAGE) if const_defined?(:DEFAULT_MESSAGE)
 
-      DEFAULT_MESSAGE = ->(input_key:, **) { "missing_#{input_key}" }
+      DEFAULT_MESSAGE = ->(input_key:, **) { Platform::ErrorMessage.new("required", input_key).to_json }
     end
   end
 end
