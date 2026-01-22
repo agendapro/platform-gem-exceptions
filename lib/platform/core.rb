@@ -10,6 +10,7 @@ require_relative "exception_handlers/failure"
 require_relative "exception_handlers/record_invalid"
 require_relative "exception_handlers/record_not_found"
 require_relative "exception_handlers/standard_error"
+require_relative "exception_handler"
 
 module Platform
   module Core
