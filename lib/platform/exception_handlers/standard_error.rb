@@ -2,8 +2,8 @@
 
 module Platform
   module ExceptionHandlers
+    # Platform::ExceptionHandlers::StandardError
     class StandardError
-
       def initialize(exception)
         @exception = exception
         freeze
@@ -25,7 +25,6 @@ module Platform
         Rails.logger.error "ExceptionHandler(internal_error): #{@exception.inspect}"
         Rails.logger.error @exception.backtrace.join("\n")
       end
-
     end
   end
 end

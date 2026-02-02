@@ -2,6 +2,7 @@
 
 module Platform
   module ExceptionHandlers
+    # Platform::ExceptionHandlers::ArgumentError
     class ArgumentError
       def initialize(exception)
         @exception = exception

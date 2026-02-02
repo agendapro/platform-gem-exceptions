@@ -2,6 +2,7 @@
 
 module Platform
   module ExceptionHandlers
+    # Platform::ExceptionHandlers::Failure
     class Failure
       def initialize(exception)
         @exception = exception

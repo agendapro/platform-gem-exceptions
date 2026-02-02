@@ -1,13 +1,82 @@
 # frozen_string_literal: true
 
-require "simplecov"
-require "platform/core"
+require 'simplecov'
+SimpleCov.start
+
+require 'logger'
+require 'uri'
+require 'active_support/core_ext/object/blank'
+require 'bigdecimal'
+require 'bigdecimal/util'
+
+# Mock Rails and dependencies before loading platform/core
+module Rails
+  def self.logger
+    @logger ||= Logger.new(nil)
+  end
+end
+
+module NewRelic
+  module Agent
+    def self.notice_error(_exception); end
+    def self.add_custom_attributes(**_attrs); end
+  end
+end
+
+module ActiveRecord
+  class Base; end
+
+  class RecordInvalid < StandardError
+    attr_reader :record
+
+    def initialize(record = nil)
+      @record = record
+      super()
+    end
+  end
+
+  class RecordNotFound < StandardError
+    attr_reader :model
+
+    def initialize(model = nil)
+      @model = model
+      super()
+    end
+  end
+end
+
+module ActiveModel
+  class Error
+    attr_reader :attribute
+
+    def initialize(attribute = nil)
+      @attribute = attribute
+    end
+  end
+
+  class Errors
+    attr_reader :errors
+
+    def initialize(errors = [])
+      @errors = errors
+    end
+
+    def first
+      @errors.first
+    end
+  end
+end
+
+module Settings
+  def self.client_names
+    []
+  end
+end
+
+require 'platform/core'
 
 RSpec.configure do |config|
-  # Enable flags like --only-failures and --next-failure
-  config.example_status_persistence_file_path = ".rspec_status"
-
-  # Disable RSpec exposing methods globally on `Module` and `main`
+  config.example_status_persistence_file_path = '.rspec_status'
   config.disable_monkey_patching!
 
   config.expect_with :rspec do |c|

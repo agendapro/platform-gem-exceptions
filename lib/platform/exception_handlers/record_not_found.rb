@@ -2,6 +2,7 @@
 
 module Platform
   module ExceptionHandlers
+    # Platform::ExceptionHandlers::RecordNotFound
     class RecordNotFound
       def initialize(exception)
         @exception = exception

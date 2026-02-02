@@ -2,6 +2,7 @@
 
 module Platform
   module ExceptionHandlers
+    # Platform::ExceptionHandlers::RecordInvalid
     class RecordInvalid
       def initialize(exception)
         @exception = exception

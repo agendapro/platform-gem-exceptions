@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Platform
+  # Platform::ExceptionHandler
   module ExceptionHandler
     extend ActiveSupport::Concern
 
