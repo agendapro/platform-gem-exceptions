@@ -3,11 +3,11 @@
 RSpec.describe Platform::ExceptionHandlers::RecordNotFound do
   subject(:handler) { described_class.new(exception) }
 
-  let(:exception) { double('RecordNotFound', model: 'User', backtrace: ['line1']) }
+  let(:exception) { double('RecordNotFound', model: 'LocationTime', backtrace: ['line1']) }
 
   describe '#body' do
     it 'returns not_found error with model name' do
-      expect(handler.body).to eq(error: :not_found, detail: 'user')
+      expect(handler.body).to eq(error: :not_found, detail: 'location_time')
     end
   end
 
@@ -29,7 +29,7 @@ RSpec.describe Platform::ExceptionHandlers::RecordNotFound do
       handler.log
 
       expect(NewRelic::Agent).to have_received(:notice_error).with(
-        an_instance_of(Platform::NewRelicError).and(having_attributes(message: 'not_found_user'))
+        an_instance_of(Platform::NewRelicError).and(having_attributes(message: 'not_found_location_time'))
       )
       expect(logger).to have_received(:error).twice
     end
