@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.version = Platform::Exceptions::VERSION
   spec.authors = ['Rodrigo Vilina']
   spec.email = ['rodrigovilina@agendapro.com']
-  spec.summary = 'core components used by agendapro plt'
+  spec.summary = 'state of the art exception handling for controller actions'
   spec.homepage = 'https://github.com/agendapro/platform-gem-exceptions'
   spec.required_ruby_version = '>= 3.2.0'
   spec.files = Dir['lib/**/*', 'CHANGELOG.md', 'README.md']
