@@ -9,7 +9,7 @@ require 'active_support/core_ext/object/blank'
 require 'bigdecimal'
 require 'bigdecimal/util'
 
-# Mock Rails and dependencies before loading platform/core
+# Mock Rails and dependencies before loading platform/exceptions
 module Rails
   def self.logger
     @logger ||= Logger.new(nil)
@@ -73,7 +73,7 @@ module Settings
   end
 end
 
-require 'platform/core'
+require 'platform/exceptions'
 
 RSpec.configure do |config|
   config.example_status_persistence_file_path = '.rspec_status'
