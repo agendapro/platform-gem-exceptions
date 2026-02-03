@@ -18,9 +18,14 @@ module Platform
       end
 
       def log
-        NewRelic::Agent.notice_error(@exception)
+        newrelic_error = Platform::NewRelicError.new(newrelic_body, @exception)
+        NewRelic::Agent.notice_error(newrelic_error)
         Rails.logger.error "ExceptionHandler(bad_request): #{@exception.inspect}"
         Rails.logger.error @exception.backtrace.join("\n")
+      end
+
+      def newrelic_body
+        ErrorMessage.from_json(body).to_h
       end
     end
   end

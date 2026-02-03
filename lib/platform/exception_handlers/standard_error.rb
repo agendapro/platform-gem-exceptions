@@ -21,7 +21,8 @@ module Platform
       end
 
       def log
-        NewRelic::Agent.notice_error(@exception)
+        newrelic_error = Platform::NewRelicError.new(body, @exception)
+        NewRelic::Agent.notice_error(newrelic_error)
         Rails.logger.error "ExceptionHandler(internal_error): #{@exception.inspect}"
         Rails.logger.error @exception.backtrace.join("\n")
       end

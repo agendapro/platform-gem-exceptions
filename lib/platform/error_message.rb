@@ -16,6 +16,13 @@ module Platform
       }.to_json
     end
 
+    def to_h(*_args)
+      {
+        error: @error,
+        detail: @detail
+      }
+    end
+
     def self.from_json(json)
       JSON.parse(json, symbolize_names: true).then do |data|
         new(data[:error], data[:detail])

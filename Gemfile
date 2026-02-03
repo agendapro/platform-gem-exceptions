@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in platform-core.gemspec
+# Specify your gem's dependencies in platform-gem-exceptions.gemspec
 gemspec
 
 gem 'irb'

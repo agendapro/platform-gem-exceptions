@@ -38,7 +38,9 @@ RSpec.describe Platform::ExceptionHandlers::Failure do
     it 'logs the error' do
       handler.log
 
-      expect(NewRelic::Agent).to have_received(:notice_error).with(exception)
+      expect(NewRelic::Agent).to have_received(:notice_error).with(
+        an_instance_of(Platform::NewRelicError).and(having_attributes(message: 'cross_company_provider'))
+      )
       expect(logger).to have_received(:error).twice
     end
   end

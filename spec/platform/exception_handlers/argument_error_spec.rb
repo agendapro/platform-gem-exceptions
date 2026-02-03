@@ -3,7 +3,7 @@
 RSpec.describe Platform::ExceptionHandlers::ArgumentError do
   subject(:handler) { described_class.new(exception) }
 
-  let(:message) { { error: 'required', detail: 'email' } }
+  let(:message) { '{"error":"required","detail":"email"}' }
   let(:exception) { instance_double(ServiceActor::ArgumentError, message:, backtrace: ['line1']) }
 
   describe '#body' do
@@ -29,7 +29,9 @@ RSpec.describe Platform::ExceptionHandlers::ArgumentError do
     it 'logs the error' do
       handler.log
 
-      expect(NewRelic::Agent).to have_received(:notice_error).with(exception)
+      expect(NewRelic::Agent).to have_received(:notice_error).with(
+        an_instance_of(Platform::NewRelicError).and(having_attributes(message: 'required_email'))
+      )
       expect(logger).to have_received(:error).twice
     end
   end

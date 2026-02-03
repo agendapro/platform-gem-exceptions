@@ -1,3 +1,3 @@
-# Platform::Core
+# platform-gem-exceptions
 
-Core components used by agendapro plt
+State of the art exception handling for controller actions
