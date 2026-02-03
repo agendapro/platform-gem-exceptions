@@ -17,7 +17,7 @@ module Platform
       end
 
       def status
-        :unprocessable_content
+        :bad_request
       end
 
       def log

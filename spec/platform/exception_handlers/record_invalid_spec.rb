@@ -15,8 +15,8 @@ RSpec.describe Platform::ExceptionHandlers::RecordInvalid do
   end
 
   describe '#status' do
-    it 'returns :unprocessable_content' do
-      expect(handler.status).to eq(:unprocessable_content)
+    it 'returns :bad_request' do
+      expect(handler.status).to eq(:bad_request)
     end
   end
 

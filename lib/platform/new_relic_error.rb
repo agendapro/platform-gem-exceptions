@@ -4,7 +4,6 @@ require 'delegate'
 
 module Platform
   # Platform::NewRelicError
-  # Wraps an exception with a custom message while preserving the original class for NewRelic grouping.
   class NewRelicError < SimpleDelegator
     def initialize(message, original_exception)
       @message = message

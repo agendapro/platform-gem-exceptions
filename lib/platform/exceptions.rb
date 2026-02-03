@@ -13,7 +13,7 @@ require_relative 'exception_handlers/failure'
 require_relative 'exception_handlers/record_invalid'
 require_relative 'exception_handlers/record_not_found'
 require_relative 'exception_handlers/standard_error'
-require_relative 'newrelic_error'
+require_relative 'new_relic_error'
 
 module Platform
   # Platform::Exceptions
