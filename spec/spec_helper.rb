@@ -47,10 +47,11 @@ end
 
 module ActiveModel
   class Error
-    attr_reader :attribute
+    attr_reader :attribute, :type
 
-    def initialize(attribute = nil)
+    def initialize(attribute = nil, type = nil)
       @attribute = attribute
+      @type = type
     end
   end
 
