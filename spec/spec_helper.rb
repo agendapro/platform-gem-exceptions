@@ -43,6 +43,8 @@ module ActiveRecord
       super()
     end
   end
+
+  class RecordNotUnique < StandardError; end
 end
 
 module ActiveModel
