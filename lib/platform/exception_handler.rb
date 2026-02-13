@@ -11,6 +11,12 @@ module Platform
       rescue_from(ServiceActor::Failure) { |e| handle_with_handler(e, Platform::ExceptionHandlers::Failure) }
       rescue_from(ActiveRecord::RecordInvalid) { |e| handle_with_handler(e, Platform::ExceptionHandlers::RecordInvalid) }
       rescue_from(ActiveRecord::RecordNotFound) { |e| handle_with_handler(e, Platform::ExceptionHandlers::RecordNotFound) }
+
+      # :nocov:
+      if defined?(RequestMigrations::UnsupportedVersionError)
+        rescue_from(RequestMigrations::UnsupportedVersionError) { |e| handle_with_handler(e, Platform::ExceptionHandlers::UnsupportedVersion) }
+      end
+      # :nocov:
     end
 
     private

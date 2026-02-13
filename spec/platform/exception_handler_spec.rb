@@ -54,7 +54,8 @@ RSpec.describe Platform::ExceptionHandler do
         ServiceActor::ArgumentError,
         ServiceActor::Failure,
         ActiveRecord::RecordInvalid,
-        ActiveRecord::RecordNotFound
+        ActiveRecord::RecordNotFound,
+        RequestMigrations::UnsupportedVersionError
       )
     end
   end

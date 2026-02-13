@@ -73,6 +73,10 @@ module Settings
   end
 end
 
+module RequestMigrations
+  class UnsupportedVersionError < StandardError; end
+end
+
 require 'platform/exceptions'
 
 RSpec.configure do |config|
