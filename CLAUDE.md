@@ -33,6 +33,7 @@ Each handler class follows the same interface — `initialize(exception)`, `body
 | `Failure` | `ServiceActor::Failure` | dynamic from `result[:status]` or `:unprocessable_content` | dynamic from `result[:error]` |
 | `ArgumentError` | `ServiceActor::ArgumentError` | `:bad_request` | parsed from `ErrorMessage` JSON |
 | `RecordInvalid` | `ActiveRecord::RecordInvalid` | `:bad_request` | `invalid_format` |
+| `RecordNotUnique` | `ActiveRecord::RecordNotUnique` | `:unprocessable_content` | `taken` |
 | `RecordNotFound` | `ActiveRecord::RecordNotFound` | `:not_found` | `not_found` |
 
 All handlers report to New Relic via `Platform::NewRelicError` (a `SimpleDelegator` that customizes the error message while preserving the original exception class).
@@ -47,6 +48,6 @@ Value object with `error` and `detail` fields. Serializable to/from JSON. Used a
 
 ## Testing
 
-- Tests mock `Rails`, `NewRelic::Agent`, `ActiveRecord::RecordInvalid`, and `ActiveRecord::RecordNotFound` in `spec/spec_helper.rb` (the gem has no runtime Rails dependency for testing).
+- Tests mock `Rails`, `NewRelic::Agent`, `ActiveRecord::RecordInvalid`, `ActiveRecord::RecordNotFound`, and `ActiveRecord::RecordNotUnique` in `spec/spec_helper.rb` (the gem has no runtime Rails dependency for testing).
 - SimpleCov enforces **100% line and branch coverage**.
 - Ruby target: >= 3.2 (CI runs 3.4.8).
