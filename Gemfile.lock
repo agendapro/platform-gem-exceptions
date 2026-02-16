@@ -3,7 +3,7 @@ PATH
   specs:
     platform-gem-exceptions (0.1.0)
       activesupport
-      service_actor
+      service_actor (~> 5.0)
 
 GEM
   remote: https://rubygems.org/
