@@ -82,6 +82,17 @@ end
 
 require 'platform/exceptions'
 
+def build_actor(&block)
+  Class.new do
+    include ServiceActor::Base
+
+    self.argument_error_class = ServiceActor::ArgumentError
+    self.failure_class = ServiceActor::Failure
+
+    class_eval(&block)
+  end
+end
+
 RSpec.configure do |config|
   config.example_status_persistence_file_path = '.rspec_status'
   config.disable_monkey_patching!
